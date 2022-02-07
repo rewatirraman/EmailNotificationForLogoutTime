@@ -3,6 +3,7 @@
 <head>
 	<title>Sending Mail</title>
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
 		function sendEmail() {
 			var dt = new Date();
@@ -33,18 +34,37 @@
 			});	
 		}
 	</script>
+	<style>
+		.center {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			margin:0px;
+			width: 95%;
+		}
+		
+		.btn-center {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
 </head>
-<body>
+<body class="center">
 	<div>
-		<h2>Current time : <span id="login" style="background-color:green; color:white;"></span></h2>
+		<h1>Current time : </h1>
+		<h1 id="login" style="background-color:green; color:white; text-align: center;"></h1>
 	</div>
 	<div>
-		<h2>Logout time : <span id="logout" style="background-color:red; color:white;"></span></h2>
+		<h1>Logout time : </h1>
+		<h1 id="logout" style="background-color:red; color:white; text-align: center;"></h1>
 	</div>
+	<br><br><br>
 	<div>
-		<h3 id="confirmation"></h3>
+		<h3 id="confirmation" style="text-align: center;"></h3>
 	</div>
-	<form method="post">
+	
+	<form method="post" class="btn-center">
 		<input id="sendButton" type="button" value="Send Mail" onclick="sendEmail()" />
 	</form>
 </body>
