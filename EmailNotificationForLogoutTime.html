@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sending Mail</title>
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script type="text/javascript">
+		function sendEmail() {
+			var dt = new Date();
+			
+			var curDtStr = dt.toLocaleString();
+		
+			dt.setHours( dt.getHours() + 8 );
+			
+			var newDtStr = dt.toLocaleString();
+		
+			document.getElementById('login').innerHTML += curDtStr;
+			document.getElementById('logout').innerHTML += newDtStr;
+			
+			var emailBody = '<html><h2>Login Time  : <span style="background-color:green; color:white;">' + curDtStr;
+			emailBody += '</span><h2>Logout Time : <span style="background-color:red; color:white;">' + newDtStr;
+			emailBody += '</span></h2></html>';
+			
+			Email.send({
+				SecureToken : "408ead6e-845d-4608-9707-9501a5623479",
+				To : 'mallickshrabani3@gmail.com',
+				From : "rraman590@gmail.com",
+				Subject: "Hey! your logout time is " + newDtStr,
+				Body: emailBody,
+			}).then(function (message) {
+				document.getElementById('sendButton').style.visibility = 'hidden';
+				document.getElementById("sendButton").style.display = "none";
+				document.getElementById("confirmation").innerHTML = "Email notification sent!!!"
+			});	
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<h2>Current time : <span id="login" style="background-color:green; color:white;"></span></h2>
+	</div>
+	<div>
+		<h2>Logout time : <span id="logout" style="background-color:red; color:white;"></span></h2>
+	</div>
+	<div>
+		<h3 id="confirmation"></h3>
+	</div>
+	<form method="post">
+		<input id="sendButton" type="button" value="Send Mail" onclick="sendEmail()" />
+	</form>
+</body>
+</html>
